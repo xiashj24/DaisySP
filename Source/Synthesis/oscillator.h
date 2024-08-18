@@ -34,6 +34,7 @@ class Oscillator
         WAVE_POLYBLEP_TRI,
         WAVE_POLYBLEP_SAW,
         WAVE_POLYBLEP_SQUARE,
+        WAVE_TABLE_SAW,
         WAVE_LAST,
     };
 

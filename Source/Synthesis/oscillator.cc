@@ -1,6 +1,8 @@
 #include "dsp.h"
 #include "oscillator.h"
 
+#include "../../../nts-1_mkii/common/osc_api.h" // for osc_sawf()
+
 using namespace daisysp;
 static inline float Polyblep(float phase_inc, float t);
 
@@ -40,6 +42,9 @@ float Oscillator::Process()
             out += Polyblep(phase_inc_, t);
             out -= Polyblep(phase_inc_, fastmod1f(t + (1.0f - pw_)));
             out *= 0.707f; // ?
+            break;
+        case WAVE_TABLE_SAW:
+            out = osc_bl2_sawf(phase_, linintf(freq_/k_note_max_hz, 0.f, 6.f));
             break;
         default: out = 0.0f; break;
     }
